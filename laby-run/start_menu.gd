@@ -20,4 +20,4 @@ func _on_instructions_pressed() -> void:
 	
 	
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://quit_scene.tscn")
