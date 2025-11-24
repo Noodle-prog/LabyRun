@@ -1,17 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://0yj26x4jp5is"]
+[gd_scene load_steps=3 format=3 uid="uid://0yj26x4jp5is"]
 
 [ext_resource type="Script" path="res://instructions.gd" id="1_vr3cv"]
+[ext_resource type="Texture2D" uid="uid://6c2nbk0317by" path="res://Instructions.png" id="2_3c4kg"]
 
 [node name="Instructions" type="Node2D"]
 script = ExtResource("1_vr3cv")
 
 [node name="Instructionsmenu" type="Sprite2D" parent="."]
+position = Vector2(592, 335)
+texture = ExtResource("2_3c4kg")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 782.0
-offset_top = 62.0
-offset_right = 1093.0
-offset_bottom = 152.0
+offset_left = 800.0
+offset_top = 547.0
+offset_right = 1111.0
+offset_bottom = 637.0
 text = "Back to Start Menu"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

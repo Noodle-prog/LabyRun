@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr7qvsfpcrxvs"]
+
+[ext_resource type="Texture2D" uid="uid://bqmneeon33dch" path="res://trophy-6212557_640 (1).png" id="1_pei3u"]
+
+[node name="Prize" type="Node2D"]
+
+[node name="prize" type="Sprite2D" parent="."]
+position = Vector2(421.75, 314)
+scale = Vector2(0.0720975, 0.05625)
+texture = ExtResource("1_pei3u")

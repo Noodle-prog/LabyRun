@@ -1,8 +1,11 @@
-[gd_scene load_steps=47 format=3 uid="uid://k5hhtwwiq3hp"]
+[gd_scene load_steps=50 format=3 uid="uid://k5hhtwwiq3hp"]
 
 [ext_resource type="Texture2D" uid="uid://cdt8d3yv6hhdl" path="res://img/labyrinth.png" id="1_v1wow"]
 [ext_resource type="Texture2D" uid="uid://ds5nkbes1r1gu" path="res://img/1_Cat_Idle-Sheet.png" id="2_v1wow"]
 [ext_resource type="Texture2D" uid="uid://bft6cg32rsnm5" path="res://img/2_Cat_Run-Sheet.png" id="3_mixcd"]
+[ext_resource type="AudioStream" uid="uid://cyfin0kbxv2vf" path="res://Intense_Emotion.mp3" id="3_rxoqn"]
+[ext_resource type="PackedScene" uid="uid://c7erk8l2bs7wx" path="res://closed_path.tscn" id="5_rxbx4"]
+[ext_resource type="PackedScene" uid="uid://cr7qvsfpcrxvs" path="res://prize.tscn" id="6_vxlss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1wow"]
 size = Vector2(26, 175)
@@ -468,10 +471,10 @@ shape = SubResource("RectangleShape2D_na8jj")
 position = Vector2(446.5, 545)
 shape = SubResource("RectangleShape2D_jv0we")
 
-[node name="CollisionShape2D48" type="CollisionShape2D" parent="TextureRect/Area2D"]
+[node name="exit" type="CollisionShape2D" parent="TextureRect/Area2D"]
 position = Vector2(455, 614)
 shape = SubResource("RectangleShape2D_nuflt")
-debug_color = Color(0.5543998, 0.5602171, 0.14142027, 0.41960785)
+debug_color = Color(0.5544, 0.560217, 0.14142, 0.419608)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 texture_filter = 1
@@ -480,11 +483,13 @@ script = SubResource("GDScript_05hpe")
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+scale = Vector2(1.3, 1.3)
 shape = SubResource("CircleShape2D_05hpe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(1, -3)
+scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_jv0we")
 animation = &"idle"
 
@@ -502,5 +507,15 @@ offset_left = 345.0
 offset_top = -307.0
 offset_right = 385.0
 offset_bottom = -284.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rxoqn")
+autoplay = true
+
+[node name="Closed_path" parent="." instance=ExtResource("5_rxbx4")]
+position = Vector2(-523, -336)
+
+[node name="Prize" parent="." instance=ExtResource("6_vxlss")]
+position = Vector2(-283, -8)
 
 [connection signal="timeout" from="Timer" to="CharacterBody2D" method="_on_timer_timeout"]
