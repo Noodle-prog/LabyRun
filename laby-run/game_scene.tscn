@@ -45,4 +45,5 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_mlf6e")
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(284, 238)
 format = 2
