@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://340aeaprs6cd"]
+[gd_scene load_steps=3 format=3 uid="uid://340aeaprs6cd"]
 
 [ext_resource type="Texture2D" uid="uid://ce3gkkcxv0phc" path="res://trophy-6212557_1280.png" id="1_e12sr"]
+[ext_resource type="Script" uid="uid://r50eepdn6s4u" path="res://win_menu.gd" id="1_fwnpl"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_fwnpl")
 
 [node name="win" type="Control" parent="."]
 layout_mode = 3
@@ -38,3 +40,6 @@ text = "YOU WON!"
 position = Vector2(246.56252, 289.75)
 scale = Vector2(0.20723994, 0.16523437)
 texture = ExtResource("1_e12sr")
+
+[connection signal="pressed" from="win/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="win/Quit" to="." method="_on_quit_pressed"]

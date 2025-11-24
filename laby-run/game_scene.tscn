@@ -126,7 +126,7 @@ func _on_timer_timeout() -> void:
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05hpe"]
-radius = 7.0
+radius = 12.369317
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mj2jn"]
 atlas = ExtResource("2_v1wow")
@@ -492,6 +492,7 @@ shape = SubResource("CircleShape2D_05hpe")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(1, -3)
+scale = Vector2(1.8, 1.8)
 sprite_frames = SubResource("SpriteFrames_jv0we")
 animation = &"idle"
 
