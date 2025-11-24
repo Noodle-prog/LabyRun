@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://k5hhtwwiq3hp"]
+[gd_scene load_steps=25 format=3 uid="uid://k5hhtwwiq3hp"]
 
-[ext_resource type="Texture2D" uid="uid://v2jmbypfjr6t" path="res://icon.svg" id="1_mlf6e"]
 [ext_resource type="Texture2D" uid="uid://drk6bcem1ggmn" path="res://Screenshot (242).png" id="1_po0ka"]
+[ext_resource type="Texture2D" uid="uid://pegyavgnof2n" path="res://img/1_Cat_Idle-Sheet.png" id="2_v1wow"]
+[ext_resource type="Texture2D" uid="uid://f5os6kgy48cg" path="res://img/2_Cat_Run-Sheet.png" id="3_mixcd"]
 
 [sub_resource type="GDScript" id="GDScript_05hpe"]
 resource_name = "movement"
@@ -9,19 +10,189 @@ script/source = "extends CharacterBody2D
 
 #https://catlikecoding.com/godot/true-top-down-2d/2-player-character/
 const SPEED = 300.0
+@onready var sprite_2d = $AnimatedSprite2D
+
+
+var can_control : bool = true
+@onready var win_menu = $\"../CanvasLayer/winMenu\"
+@onready var death_menu = $\"../CanvasLayer/deathMenu\"
+@onready var pause_menu = $\"../CanvasLayer/pauseMenu\"
+
+
+func _ready():
+	#death_menu.visible = false
+	#win_menu.visible = false
+	#pause_menu.visible = false
+	sprite_2d.flip_h = false
+	#can_control = true
 
 func get_player_input() -> void:
-	var vector := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
-	velocity = vector * SPEED
+	var direction := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	if direction:
+		velocity = direction * SPEED
+	#flip sprite according to direction its facing
+	if direction.x != 0:
+		sprite_2d.flip_h = direction.x < 0
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
 
 func _physics_process(delta: float) -> void:
 	get_player_input()
+	
 	move_and_slide()
+	handle_animation()
 
-	move_and_slide()
+func handle_animation():
+	var direction = Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	if direction:
+		sprite_2d.play(\"run\")
+	else:
+		sprite_2d.play(\"idle\")
+	
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05hpe"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj2jn"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdryc"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e45b"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e35lh"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udeyl"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miq82"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5hk1"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueiaa"]
+atlas = ExtResource("2_v1wow")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daj04"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlphb"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opqoc"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpcsf"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d2pr"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5hfs"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snaye"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wc4g"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78j2m"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na8jj"]
+atlas = ExtResource("3_mixcd")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jv0we"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj2jn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdryc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e45b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e35lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udeyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miq82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5hk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueiaa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daj04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlphb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opqoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpcsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d2pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5hfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snaye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wc4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78j2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na8jj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 14.0
+}]
 
 [node name="GameScene" type="Node2D"]
 
@@ -33,6 +204,7 @@ offset_bottom = 326.0
 texture = ExtResource("1_po0ka")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+texture_filter = 1
 script = SubResource("GDScript_05hpe")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
@@ -40,9 +212,11 @@ script = SubResource("GDScript_05hpe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_05hpe")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_mlf6e")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(1, -3)
+sprite_frames = SubResource("SpriteFrames_jv0we")
+animation = &"idle"
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(284, 238)
