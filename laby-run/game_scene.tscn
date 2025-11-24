@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://k5hhtwwiq3hp"]
+[gd_scene load_steps=47 format=3 uid="uid://k5hhtwwiq3hp"]
 
 [ext_resource type="Texture2D" uid="uid://cdt8d3yv6hhdl" path="res://img/labyrinth.png" id="1_v1wow"]
 [ext_resource type="Texture2D" uid="uid://ds5nkbes1r1gu" path="res://img/1_Cat_Idle-Sheet.png" id="2_v1wow"]
@@ -66,6 +66,9 @@ size = Vector2(23.25, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jv0we"]
 size = Vector2(33, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuflt"]
+size = Vector2(49, 22)
 
 [sub_resource type="GDScript" id="GDScript_05hpe"]
 resource_name = "movement"
@@ -464,6 +467,10 @@ shape = SubResource("RectangleShape2D_na8jj")
 [node name="CollisionShape2D47" type="CollisionShape2D" parent="TextureRect/Area2D"]
 position = Vector2(446.5, 545)
 shape = SubResource("RectangleShape2D_jv0we")
+
+[node name="CollisionShape2D48" type="CollisionShape2D" parent="TextureRect/Area2D"]
+position = Vector2(455.5, 635)
+shape = SubResource("RectangleShape2D_nuflt")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 texture_filter = 1

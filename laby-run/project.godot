@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="LabyRun"
-config/features=PackedStringArray("4.3", "Forward Plus")
+run/main_scene="uid://dfby0pq8jcdx6"
+run/print_header=false
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
-run/main_scene="uid://k5hhtwwiq3hp"
 
 [dotnet]
 
