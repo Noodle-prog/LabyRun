@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://340aeaprs6cd"]
+
+[ext_resource type="Texture2D" uid="uid://ce3gkkcxv0phc" path="res://trophy-6212557_1280.png" id="1_e12sr"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="win" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="Button" parent="win"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 139.0
+offset_right = 733.0
+offset_bottom = 243.0
+text = "Restart"
+
+[node name="Quit" type="Button" parent="win"]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 383.0
+offset_right = 731.0
+offset_bottom = 483.0
+text = "Quit"
+
+[node name="Label" type="Label" parent="win"]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 281.0
+offset_right = 699.0
+offset_bottom = 334.0
+text = "YOU WON!"
+
+[node name="win2" type="Sprite2D" parent="."]
+position = Vector2(246.56252, 289.75)
+scale = Vector2(0.20723994, 0.16523437)
+texture = ExtResource("1_e12sr")
