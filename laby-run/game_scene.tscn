@@ -97,7 +97,8 @@ func get_player_input() -> void:
 		sprite_2d.flip_h = direction.x < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
+	if !(direction):
+		velocity=Vector2(0,0)
 
 func _physics_process(delta: float) -> void:
 	get_player_input()
