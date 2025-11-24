@@ -10,16 +10,46 @@ script/source = "extends CharacterBody2D
 
 #https://catlikecoding.com/godot/true-top-down-2d/2-player-character/
 const SPEED = 300.0
-@onready var _animated_sprite = $AnimatedSprite2D
+@onready var sprite_2d = $AnimatedSprite2D
+
+
+var can_control : bool = true
+@onready var win_menu = $\"../CanvasLayer/winMenu\"
+@onready var death_menu = $\"../CanvasLayer/deathMenu\"
+@onready var pause_menu = $\"../CanvasLayer/pauseMenu\"
+
+
+func _ready():
+	#death_menu.visible = false
+	#win_menu.visible = false
+	#pause_menu.visible = false
+	sprite_2d.flip_h = false
+	#can_control = true
 
 func get_player_input() -> void:
-	var vector := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
-	_animated_sprite.play(\"run\")
-	velocity = vector * SPEED
+	var direction := Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	if direction:
+		velocity = direction * SPEED
+	#flip sprite according to direction its facing
+	if direction.x != 0:
+		sprite_2d.flip_h = direction.x < 0
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
 
 func _physics_process(delta: float) -> void:
 	get_player_input()
+	
 	move_and_slide()
+	handle_animation()
+
+func handle_animation():
+	var direction = Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	if direction:
+		sprite_2d.play(\"run\")
+	else:
+		sprite_2d.play(\"idle\")
+	
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05hpe"]
