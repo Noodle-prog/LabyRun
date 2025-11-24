@@ -74,7 +74,8 @@ script/source = "extends CharacterBody2D
 #https://catlikecoding.com/godot/true-top-down-2d/2-player-character/
 const SPEED = 300.0
 @onready var sprite_2d = $AnimatedSprite2D
-
+var time_elapsed:float = 10
+@onready var timer: Label = $\"../Label\"
 
 var can_control : bool = true
 @onready var win_menu = $\"../CanvasLayer/winMenu\"
@@ -102,7 +103,8 @@ func get_player_input() -> void:
 
 func _physics_process(delta: float) -> void:
 	get_player_input()
-	
+	time_elapsed -= delta
+	timer.text = str(int(time_elapsed))
 	move_and_slide()
 	handle_animation()
 
@@ -113,6 +115,11 @@ func handle_animation():
 	else:
 		sprite_2d.play(\"idle\")
 	
+
+
+func _on_timer_timeout() -> void:
+	print(\"DEAD\")
+	pass # Replace with function body.
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05hpe"]
@@ -476,3 +483,16 @@ animation = &"idle"
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(284, 238)
 format = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 345.0
+offset_top = -307.0
+offset_right = 385.0
+offset_bottom = -284.0
+
+[connection signal="timeout" from="Timer" to="CharacterBody2D" method="_on_timer_timeout"]
